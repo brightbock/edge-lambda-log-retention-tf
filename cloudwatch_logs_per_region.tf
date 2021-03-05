@@ -1,7 +1,7 @@
 
 #######
 # This file is dynamically generated.
-# Please update and execute ".//GENERATE_PER_REGION.bash" to make changes
+# Please update and execute "./GENERATE_PER_REGION.bash" to make changes
 #######
 
 # Region: ap-northeast-1
