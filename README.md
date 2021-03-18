@@ -1,3 +1,5 @@
+![GitHub](https://img.shields.io/github/license/brightbock/edge-lambda-log-retention-tf) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/brightbock/edge-lambda-log-retention-tf) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/brightbock/edge-lambda-log-retention-tf/Terraform)
+
 # Set Cloudwatch log retention for Lambda@Edge functions
 
 [AWS lambda@edge](https://aws.amazon.com/lambda/edge/) will log to Cloudwatch logs in the region nearest to execution i.e. nearest to the user.
