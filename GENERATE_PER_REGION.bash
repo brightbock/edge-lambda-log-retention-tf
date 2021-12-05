@@ -18,6 +18,7 @@ REGIONS=( $(
 TEMPLATE="$( cat <<-"END_OF_TEMPLATE"
 # Region: __REGION__
 module "each_region-__REGION__" {
+  destroy               = var.destroy
   source                = "./each_region"
   aws_region            = "__REGION__"
   region_log_group_name = "/aws/lambda/us-east-1.${var.function_name}"

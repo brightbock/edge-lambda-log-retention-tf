@@ -1,3 +1,8 @@
+variable "destroy" {
+  type    = bool
+  default = false
+}
+
 variable "region_log_group_name" {
 }
 

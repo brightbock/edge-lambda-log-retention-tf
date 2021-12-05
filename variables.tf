@@ -1,3 +1,8 @@
+variable "destroy" {
+  type    = bool
+  default = false
+}
+
 variable "function_name" {
 }
 
