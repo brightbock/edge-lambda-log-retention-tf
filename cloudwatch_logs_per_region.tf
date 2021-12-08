@@ -10,15 +10,15 @@ provider "aws" {
   region                 = "ap-northeast-1"
   skip_region_validation = var.skip_region_validation
 }
-#module "each_region-ap-northeast-1" {
-#  source = "./each_region"
-#  providers = {
-#    aws = aws.ap-northeast-1
-#  }
-#  log_group_name    = "/aws/lambda/us-east-1.${var.function_name}"
-#  tags              = var.tags
-#  retention_in_days = var.retention_in_days
-#}
+module "each_region-ap-northeast-1" {
+  source = "./each_region"
+  providers = {
+    aws = aws.ap-northeast-1
+  }
+  log_group_name    = "/aws/lambda/us-east-1.${var.function_name}"
+  tags              = var.tags
+  retention_in_days = var.retention_in_days
+}
 
 # Region: ap-northeast-2
 provider "aws" {
