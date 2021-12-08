@@ -12,14 +12,14 @@ This Terraform module facilitates proactive creation of the log groups a Lambda@
 
   1. Add a module definition to your Terraform as shown in the example below
   2. Update `retention_in_days` to match your requirements
-  3. Uncomment and update `common_tags` to tag each log group
+  3. Uncomment and update `tags` to tag each log group
 
 ```
 module "edge_lambda_logs" {
   source            = "git::https://github.com/brightbock/edge-lambda-log-retention-tf.git?ref=v0.0.2"
   function_name     = "my_function_name"
   retention_in_days = "90"
-  # common_tags       = { "tagKey" = "tagValue" }
+  # tags              = { "tagKey" = "tagValue" }
 }
 ```
 

@@ -1,17 +1,9 @@
-variable "destroy" {
-  type    = bool
-  default = false
+variable "log_group_name" {
 }
 
-variable "region_log_group_name" {
-}
-
-variable "common_tags" {
+variable "tags" {
   default = {
   }
-}
-
-variable "aws_region" {
 }
 
 variable "retention_in_days" {

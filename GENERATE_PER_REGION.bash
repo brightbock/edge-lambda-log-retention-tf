@@ -17,14 +17,21 @@ REGIONS=( $(
 
 TEMPLATE="$( cat <<-"END_OF_TEMPLATE"
 # Region: __REGION__
+provider "aws" {
+  alias = "__REGION__"
+  region = "__REGION__"
+  skip_region_validation = var.skip_region_validation
+}
 module "each_region-__REGION__" {
-  destroy               = var.destroy
   source                = "./each_region"
-  aws_region            = "__REGION__"
-  region_log_group_name = "/aws/lambda/us-east-1.${var.function_name}"
-  common_tags           = var.common_tags
+  providers = {
+    aws = aws.__REGION__
+  }
+  log_group_name = "/aws/lambda/us-east-1.${var.function_name}"
+  tags           = var.tags
   retention_in_days     = var.retention_in_days
 }
+
 END_OF_TEMPLATE
 )"
 

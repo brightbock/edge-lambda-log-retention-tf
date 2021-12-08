@@ -1,4 +1,4 @@
-variable "destroy" {
+variable "skip_region_validation" {
   type    = bool
   default = false
 }
@@ -6,7 +6,7 @@ variable "destroy" {
 variable "function_name" {
 }
 
-variable "common_tags" {
+variable "tags" {
   default = {
   }
 }
