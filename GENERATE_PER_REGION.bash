@@ -6,6 +6,17 @@ set -o nounset
 
 FILE="./cloudwatch_logs_per_region.tf"
 
+MANUALLY_EXCLUDED=(
+af-south-1
+ap-east-1
+ap-northeast-3
+ca-central-1
+eu-north-1
+eu-west-2
+eu-west-3
+me-south-1
+)
+
 REGIONS=( $(
   aws ec2 describe-regions \
     --filters 'Name=opt-in-status,Values=opt-in-not-required,opted-in' \
@@ -43,14 +54,26 @@ fi
 cat > "${FILE}" <<END_OF_HEADER
 
 #######
+#
 # This file is dynamically generated.
 # Please update and execute "$0" to make changes
+#
+# Refer: https://aws.amazon.com/cloudfront/features/ for a list of "Regional Edge Cache" regions
+#
 #######
 
 END_OF_HEADER
 
 for REGION in "${REGIONS[@]}" ; do
-  printf "%s\n\n" "${TEMPLATE}" | sed "s|__REGION__|${REGION}|g" >> "${FILE}"
+  LINE_PREFIX=""
+  if echo "${MANUALLY_EXCLUDED[@]}" | tr " " "\n" | grep -F -w -c "${REGION}" > /dev/null ; then
+    LINE_PREFIX="## "
+  fi
+  printf "%s\n\n" "${TEMPLATE}" \
+    | sed "s|__REGION__|${REGION}|g" \
+    | sed "s|^|${LINE_PREFIX}|" \
+    >> "${FILE}"
+  printf "\n\n" >> "${FILE}"
 done
 
 echo "## END OF FILE ##" >> "${FILE}"
